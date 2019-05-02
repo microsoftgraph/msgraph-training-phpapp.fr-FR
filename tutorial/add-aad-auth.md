@@ -1,6 +1,6 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-Dans cet exercice, vous allez étendre l'application de l'exercice précédent pour prendre en charge l'authentification avec Azure AD. Cela est nécessaire pour obtenir le jeton d'accès OAuth nécessaire pour appeler Microsoft Graph. Dans cette étape, vous allez intégrer la bibliothèque [oauth2-cliente](https://github.com/thephpleague/oauth2-client) dans l'application.
+Dans cet exercice, vous allez étendre l’application de l’exercice précédent pour prendre en charge l’authentification avec Azure AD. Cela est nécessaire pour obtenir le jeton d’accès OAuth nécessaire pour appeler Microsoft Graph. Dans cette étape, vous allez intégrer la bibliothèque [oauth2-cliente](https://github.com/thephpleague/oauth2-client) dans l’application.
 
 Ouvrez le `.env` fichier à la racine de votre application php et ajoutez le code suivant à la fin du fichier.
 
@@ -14,10 +14,10 @@ OAUTH_AUTHORIZE_ENDPOINT=/oauth2/v2.0/authorize
 OAUTH_TOKEN_ENDPOINT=/oauth2/v2.0/token
 ```
 
-Remplacez `YOUR APP ID HERE` par l'ID de l'application dans le portail d'inscription de `YOUR APP SECRET HERE` l'application et remplacez par le mot de passe que vous avez généré.
+Remplacez `YOUR APP ID HERE` par l’ID de l’application dans le portail d’inscription de `YOUR APP SECRET HERE` l’application et remplacez par le mot de passe que vous avez généré.
 
 > [!IMPORTANT]
-> Si vous utilisez le contrôle de code source tel que git, il est maintenant recommandé d'exclure le `.env` fichier du contrôle de code source afin d'éviter une fuite accidentelle de votre ID d'application et de votre mot de passe.
+> Si vous utilisez le contrôle de code source tel que git, il est maintenant recommandé d’exclure le `.env` fichier du contrôle de code source afin d’éviter une fuite accidentelle de votre ID d’application et de votre mot de passe.
 
 ## <a name="implement-sign-in"></a>Mettre en œuvre la connexion
 
@@ -109,22 +109,22 @@ class AuthController extends Controller
 
 Cela définit un contrôleur avec deux actions: `signin` et `callback`.
 
-L' `signin` action génère l'URL de connexion Azure ad, enregistre la `state` valeur générée par le client OAuth, puis redirige le navigateur vers la page de connexion Azure ad.
+L' `signin` action génère l’URL de connexion Azure ad, enregistre la `state` valeur générée par le client OAuth, puis redirige le navigateur vers la page de connexion Azure ad.
 
-L' `callback` action est l'endroit où Azure redirige une fois la connexion terminée. Cette action permet de s' `state` assurer que la valeur correspond à la valeur enregistrée, puis aux utilisateurs le code d'autorisation envoyé par Azure pour demander un jeton d'accès. Il redirige ensuite vers la page d'accueil avec le jeton d'accès dans la valeur d'erreur temporaire. Nous allons l'utiliser pour vérifier que notre connexion fonctionne avant de poursuivre. Avant de tester, nous devons ajouter les itinéraires à `./routes/web.php`.
+L' `callback` action est l’endroit où Azure redirige une fois la connexion terminée. Cette action permet de s' `state` assurer que la valeur correspond à la valeur enregistrée, puis aux utilisateurs le code d’autorisation envoyé par Azure pour demander un jeton d’accès. Il redirige ensuite vers la page d’accueil avec le jeton d’accès dans la valeur d’erreur temporaire. Nous allons l’utiliser pour vérifier que notre connexion fonctionne avant de poursuivre. Avant de tester, nous devons ajouter les itinéraires à `./routes/web.php`.
 
 ```PHP
 Route::get('/signin', 'AuthController@signin');
 Route::get('/callback', 'AuthController@callback');
 ```
 
-Démarrez le serveur et accédez à `https://localhost:8000`. Cliquez sur le bouton de connexion et vous devez être redirigé vers `https://login.microsoftonline.com`. Connectez-vous avec votre compte Microsoft et acceptez les autorisations demandées. Le navigateur redirige vers l'application en affichant le jeton.
+Démarrez le serveur et accédez à `https://localhost:8000`. Cliquez sur le bouton de connexion et vous devez être redirigé vers `https://login.microsoftonline.com`. Connectez-vous avec votre compte Microsoft et acceptez les autorisations demandées. Le navigateur redirige vers l’application en affichant le jeton.
 
-### <a name="get-user-details"></a>Obtenir les détails de l'utilisateur
+### <a name="get-user-details"></a>Obtenir les détails de l’utilisateur
 
-Mettez à `callback` jour la `/app/Http/Controllers/AuthController.php` méthode dans pour obtenir le profil de l'utilisateur à partir de Microsoft Graph.
+Mettez à `callback` jour la `/app/Http/Controllers/AuthController.php` méthode dans pour obtenir le profil de l’utilisateur à partir de Microsoft Graph.
 
-Tout d'abord, ajoutez `use` les instructions suivantes en haut du fichier, sous la `namespace App\Http\Controllers;` ligne.
+Tout d’abord, ajoutez `use` les instructions suivantes en haut du fichier, sous la `namespace App\Http\Controllers;` ligne.
 
 ```php
 use Microsoft\Graph\Graph;
@@ -154,11 +154,11 @@ try {
 }
 ```
 
-Le nouveau code crée un `Graph` objet, lui attribue le jeton d'accès, puis l'utilise pour demander le profil de l'utilisateur. Il ajoute le nom complet de l'utilisateur à la sortie temporaire pour le test.
+Le nouveau code crée un `Graph` objet, lui attribue le jeton d’accès, puis l’utilise pour demander le profil de l’utilisateur. Il ajoute le nom complet de l’utilisateur à la sortie temporaire pour le test.
 
 ## <a name="storing-the-tokens"></a>Stockage des jetons
 
-Maintenant que vous pouvez obtenir des jetons, il est temps de mettre en œuvre un moyen de les stocker dans l'application. Étant donné qu'il s'agit d'un exemple d'application, pour des raisons de simplicité, vous les stockerez dans la session. Une application réelle utiliserait une solution de stockage sécurisé plus fiable, comme une base de données.
+Maintenant que vous pouvez obtenir des jetons, il est temps de mettre en œuvre un moyen de les stocker dans l’application. Étant donné qu’il s’agit d’un exemple d’application, pour des raisons de simplicité, vous les stockerez dans la session. Une application réelle utiliserait une solution de stockage sécurisé plus fiable, comme une base de données.
 
 Créez un répertoire dans le `./app` répertoire nommé `TokenStore`, puis créez un fichier dans ce répertoire nommé `TokenCache.php`et ajoutez le code suivant.
 
@@ -201,7 +201,7 @@ class TokenCache {
 
 Ensuite, mettez à `callback` jour la fonction `AuthController` dans la classe pour stocker les jetons dans la session et rediriger vers la page principale.
 
-Tout d'abord, ajoutez `use` l'instruction suivante en haut `./app/Http/Controllers/AuthController.php`de, sous `namespace App\Http\Controllers;` la ligne.
+Tout d’abord, ajoutez `use` l’instruction suivante en haut `./app/Http/Controllers/AuthController.php`de, sous `namespace App\Http\Controllers;` la ligne.
 
 ```php
 use App\TokenStore\TokenCache;
@@ -232,7 +232,7 @@ try {
 
 ## <a name="implement-sign-out"></a>Mettre en œuvre la déconnexion
 
-Avant de tester cette nouvelle fonctionnalité, ajoutez une méthode pour vous déconnecter. Ajoutez l'action suivante à la `AuthController` classe.
+Avant de tester cette nouvelle fonctionnalité, ajoutez une méthode pour vous déconnecter. Ajoutez l’action suivante à la `AuthController` classe.
 
 ```PHP
 public function signout()
@@ -249,19 +249,19 @@ Ajoutez cette action à `./routes/web.php`.
 Route::get('/signout', 'AuthController@signout');
 ```
 
-ReDémarrez le serveur et suivez le processus de connexion. Vous devez revenir sur la page d'accueil, mais l'interface utilisateur doit changer pour indiquer que vous êtes connecté.
+Redémarrez le serveur et suivez le processus de connexion. Vous devez revenir sur la page d’accueil, mais l’interface utilisateur doit changer pour indiquer que vous êtes connecté.
 
-![Capture d'écran de la page d'accueil après la connexion](./images/add-aad-auth-01.png)
+![Capture d’écran de la page d’accueil après la connexion](./images/add-aad-auth-01.png)
 
-Cliquez sur Avatar de l'utilisateur dans le coin supérieur droit pour **** accéder au lien Déconnexion. Cliquez **** sur Déconnexion pour réinitialiser la session et revenir à la page d'accueil.
+Cliquez sur Avatar de l’utilisateur dans le coin supérieur droit pour **** accéder au lien Déconnexion. Cliquez **** sur Déconnexion pour réinitialiser la session et revenir à la page d’accueil.
 
-![Capture d'écran du menu déroulant avec le lien déConnexion](./images/add-aad-auth-02.png)
+![Capture d’écran du menu déroulant avec le lien Déconnexion](./images/add-aad-auth-02.png)
 
 ## <a name="refreshing-tokens"></a>Actualisation des jetons
 
-À ce stade, votre application a un jeton d'accès, qui est envoyé `Authorization` dans l'en-tête des appels d'API. Il s'agit du jeton qui permet à l'application d'accéder à Microsoft Graph pour le compte de l'utilisateur.
+À ce stade, votre application a un jeton d’accès, qui est envoyé `Authorization` dans l’en-tête des appels d’API. Il s’agit du jeton qui permet à l’application d’accéder à Microsoft Graph pour le compte de l’utilisateur.
 
-Toutefois, ce jeton est éphémère. Le jeton expire une heure après son émission. C'est ici que le jeton d'actualisation devient utile. Le jeton d'actualisation permet à l'application de demander un nouveau jeton d'accès sans demander à l'utilisateur de se reconnecter. Mettez à jour le code de gestion des jetons pour implémenter l'actualisation des jetons.
+Toutefois, ce jeton est éphémère. Le jeton expire une heure après son émission. C’est ici que le jeton d’actualisation devient utile. Le jeton d’actualisation permet à l’application de demander un nouveau jeton d’accès sans demander à l’utilisateur de se reconnecter. Mettez à jour le code de gestion des jetons pour implémenter l’actualisation des jetons.
 
 Ouvrez `./app/TokenStore/TokenCache.php` et ajoutez la fonction suivante à la `TokenCache` classe.
 
@@ -324,4 +324,4 @@ public function getAccessToken() {
 }
 ```
 
-Cette méthode vérifie d'abord si le jeton d'accès a expiré ou s'il arrive à expiration. Si c'est le cas, il utilise le jeton d'actualisation pour obtenir de nouveaux jetons, puis il met à jour le cache et renvoie le nouveau jeton d'accès.
+Cette méthode vérifie d’abord si le jeton d’accès a expiré ou s’il arrive à expiration. Si c’est le cas, il utilise le jeton d’actualisation pour obtenir de nouveaux jetons, puis il met à jour le cache et renvoie le nouveau jeton d’accès.

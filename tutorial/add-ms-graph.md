@@ -1,10 +1,10 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-Dans cet exercice, vous allez incorporer Microsoft Graph dans l'application. Pour cette application, vous allez utiliser la bibliothèque [Microsoft Graph](https://github.com/microsoftgraph/msgraph-sdk-php) pour passer des appels à Microsoft Graph.
+Dans cet exercice, vous allez incorporer Microsoft Graph dans l’application. Pour cette application, vous allez utiliser la bibliothèque [Microsoft Graph](https://github.com/microsoftgraph/msgraph-sdk-php) pour passer des appels à Microsoft Graph.
 
-## <a name="get-calendar-events-from-outlook"></a>Obtenir des événements de calendrier à partir d'Outlook
+## <a name="get-calendar-events-from-outlook"></a>Obtenir des événements de calendrier à partir d’Outlook
 
-Nous allons commencer par ajouter un contrôleur pour l'affichage Calendrier. Créez un fichier dans le `./app/Http/Controllers` dossier nommé `CalendarController.php`et ajoutez le code suivant.
+Nous allons commencer par ajouter un contrôleur pour l’affichage Calendrier. Créez un fichier dans le `./app/Http/Controllers` dossier nommé `CalendarController.php`et ajoutez le code suivant.
 
 ```php
 <?php
@@ -50,9 +50,9 @@ class CalendarController extends Controller
 
 Examinez ce que fait ce code.
 
-- L'URL qui sera appelée est `/v1.0/me/events`.
-- Le `$select` paramètre limite les champs renvoyés pour chaque événement à ceux que l'affichage utilise réellement.
-- Le `$orderby` paramètre trie les résultats en fonction de la date et de l'heure de leur création, avec l'élément le plus récent en premier.
+- L’URL qui sera appelée est `/v1.0/me/events`.
+- Le `$select` paramètre limite les champs renvoyés pour chaque événement à ceux que l’affichage utilise réellement.
+- Le `$orderby` paramètre trie les résultats en fonction de la date et de l’heure de leur création, avec l’élément le plus récent en premier.
 
 Mettre à jour les `./routes/web.php` itinéraires dans pour ajouter un itinéraire à ce nouveau contrôleur
 
@@ -60,7 +60,7 @@ Mettre à jour les `./routes/web.php` itinéraires dans pour ajouter un itinéra
 Route::get('/calendar', 'CalendarController@calendar');
 ```
 
-À présent, vous pouvez le tester. Connectez-vous, puis cliquez sur le lien **calendrier** dans la barre de navigation. Si tout fonctionne, vous devez voir un vidage JSON des événements sur le calendrier de l'utilisateur.
+À présent, vous pouvez le tester. Connectez-vous, puis cliquez sur le lien **calendrier** dans la barre de navigation. Si tout fonctionne, vous devez voir un vidage JSON des événements sur le calendrier de l’utilisateur.
 
 ## <a name="display-the-results"></a>Afficher les résultats
 
@@ -96,13 +96,13 @@ Route::get('/calendar', 'CalendarController@calendar');
 @endsection
 ```
 
-Cela permet d'exécuter une boucle dans une collection d'événements et d'ajouter une ligne de tableau pour chacun d'eux. Supprimez `return response()->json($events);` la ligne de `calendar` l'action `./app/Http/Controllers/CalendarController.php`dans et remplacez-la par le code suivant.
+Cela permet d’exécuter une boucle dans une collection d’événements et d’ajouter une ligne de tableau pour chacun d’eux. Supprimez `return response()->json($events);` la ligne de `calendar` l’action `./app/Http/Controllers/CalendarController.php`dans et remplacez-la par le code suivant.
 
 ```php
 $viewData['events'] = $events;
 return view('calendar', $viewData);
 ```
 
-Actualisez la page et l'application doit maintenant afficher un tableau d'événements.
+Actualisez la page et l’application doit maintenant afficher un tableau d’événements.
 
-![Capture d'écran du tableau des événements](./images/add-msgraph-01.png)
+![Capture d’écran du tableau des événements](./images/add-msgraph-01.png)

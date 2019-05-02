@@ -25,9 +25,9 @@ Exécutez la commande suivante dans votre interface CLI.
 composer require league/oauth2-client:dev-master microsoft/microsoft-graph
 ```
 
-## <a name="design-the-app"></a>Concevoir l'application
+## <a name="design-the-app"></a>Concevoir l’application
 
-Commencez par créer la disposition globale de l'application. Créez un fichier dans le `./resources/views` répertoire nommé `layout.blade.php` et ajoutez le code suivant.
+Commencez par créer la disposition globale de l’application. Créez un fichier dans le `./resources/views` répertoire nommé `layout.blade.php` et ajoutez le code suivant.
 
 ```php
 <!DOCTYPE html>
@@ -116,7 +116,7 @@ Commencez par créer la disposition globale de l'application. Créez un fichier 
 
 Ce code ajoute [bootstrap](http://getbootstrap.com/) pour les styles simples et [font Isard](https://fontawesome.com/) pour certaines icônes simples. Il définit également une disposition globale avec une barre de navigation.
 
-Maintenant, `./public/css/app.css` ouvrez et remplacez l'intégralité de son contenu par ce qui suit.
+Maintenant, `./public/css/app.css` ouvrez et remplacez l’intégralité de son contenu par ce qui suit.
 
 ```css
 body {
@@ -173,7 +173,7 @@ public function loadViewData()
 }
 ```
 
-Ensuite, ajoutez un contrôleur pour la page d'accueil. Créez un fichier dans le `./app/Http/Controllers` répertoire nommé `HomeController.php` et ajoutez le code suivant.
+Ensuite, ajoutez un contrôleur pour la page d’accueil. Créez un fichier dans le `./app/Http/Controllers` répertoire nommé `HomeController.php` et ajoutez le code suivant.
 
 ```php
 <?php
@@ -202,6 +202,6 @@ Enfin, mettez à jour l' `./routes/web.php` itinéraire dans pour utiliser le no
 Route::get('/', 'HomeController@welcome');
 ```
 
-Enregistrez toutes vos modifications et redémarrez le serveur. À présent, l'application doit être très différente.
+Enregistrez toutes vos modifications et redémarrez le serveur. À présent, l’application doit être très différente.
 
-![Capture d'écran de la page d'accueil repensée](./images/create-app-01.png)
+![Capture d’écran de la page d’accueil repensée](./images/create-app-01.png)
