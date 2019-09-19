@@ -12,9 +12,9 @@ Laravel crée un nouveau répertoire appelé `graph-tutorial` et génère un éc
 php artisan serve
 ```
 
-Ouvrez votre navigateur et accédez à `http://localhost:8000`. Si tout fonctionne, vous verrez une page Laravel par défaut. Si vous ne voyez pas cette page, consultez les [docs Laravel](https://laravel.com/docs/5.6).
+Ouvrez votre navigateur et accédez à `http://localhost:8000`. Si tout fonctionne, vous verrez une page Laravel par défaut. Si vous ne voyez pas cette page, consultez les [docs Laravel](https://laravel.com/docs/6.0).
 
-Avant de poursuivre, installez des bibliothèques supplémentaires que vous utiliserez plus tard:
+Avant de poursuivre, installez des bibliothèques supplémentaires que vous utiliserez plus tard :
 
 - [oauth2-client pour le](https://github.com/thephpleague/oauth2-client) traitement des flux de connexion et de jetons OAuth.
 - [Microsoft-Graph](https://github.com/microsoftgraph/msgraph-sdk-php) pour effectuer des appels à Microsoft Graph.
@@ -116,7 +116,7 @@ Commencez par créer la disposition globale de l’application. Créez un fichie
 
 Ce code ajoute [bootstrap](http://getbootstrap.com/) pour les styles simples et [font Isard](https://fontawesome.com/) pour certaines icônes simples. Il définit également une disposition globale avec une barre de navigation.
 
-Maintenant, `./public/css/app.css` ouvrez et remplacez l’intégralité de son contenu par ce qui suit.
+Créez un `./public` répertoire dans le répertoire nommé `css`, puis créez un fichier dans le `./public/css` répertoire nommé. `app.css` Ajoutez le code suivant.
 
 ```css
 body {
