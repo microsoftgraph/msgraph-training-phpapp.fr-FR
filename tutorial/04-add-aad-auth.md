@@ -62,7 +62,13 @@ class AuthController extends Controller
     $request->session()->forget('oauthState');
     $providedState = $request->query('state');
 
-    if (!isset($expectedState) || !isset($providedState) || $expectedState != $providedState) {
+    if (!isset($expectedState)) {
+      // If there is no expected state in the session,
+      // do nothing and redirect to the home page.
+      return redirect('/');
+    }
+
+    if (!isset($providedState) || $expectedState != $providedState) {
       return redirect('/')
         ->with('error', 'Invalid auth state')
         ->with('errorDetail', 'The provided auth state did not match the expected value');
@@ -107,7 +113,7 @@ class AuthController extends Controller
 }
 ```
 
-Cela définit un contrôleur avec deux actions: `signin` et `callback`.
+Cela définit un contrôleur avec deux actions : `signin` et `callback`.
 
 L' `signin` action génère l’URL de connexion Azure ad, enregistre la `state` valeur générée par le client OAuth, puis redirige le navigateur vers la page de connexion Azure ad.
 
@@ -253,7 +259,7 @@ Redémarrez le serveur et suivez le processus de connexion. Vous devez revenir s
 
 ![Capture d’écran de la page d’accueil après la connexion](./images/add-aad-auth-01.png)
 
-Cliquez sur Avatar de l’utilisateur dans le coin supérieur droit pour **** accéder au lien Déconnexion. Cliquez **** sur Déconnexion pour réinitialiser la session et revenir à la page d’accueil.
+Cliquez sur Avatar de l’utilisateur dans le coin supérieur droit pour accéder au lien **déconnexion** . Cliquez sur **déconnexion** pour réinitialiser la session et revenir à la page d’accueil.
 
 ![Capture d’écran du menu déroulant avec le lien Déconnexion](./images/add-aad-auth-02.png)
 
