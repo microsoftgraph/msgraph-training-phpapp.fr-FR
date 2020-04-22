@@ -1,207 +1,68 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-<span data-ttu-id="78f75-101">Ouvrez votre interface de ligne de commande (CLI), accédez à un répertoire où vous disposez de droits pour créer des fichiers, puis exécutez la commande suivante pour créer une application PHP.</span><span class="sxs-lookup"><span data-stu-id="78f75-101">Open your command-line interface (CLI), navigate to a directory where you have rights to create files, and run the following command to create a new PHP app.</span></span>
+<span data-ttu-id="f1c9a-101">Commencez par créer un nouveau projet Laravel.</span><span class="sxs-lookup"><span data-stu-id="f1c9a-101">Begin by creating a new Laravel project.</span></span>
 
-```Shell
-laravel new graph-tutorial
-```
+1. <span data-ttu-id="f1c9a-102">Ouvrez votre interface de ligne de commande (CLI), accédez à un répertoire où vous disposez de droits pour créer des fichiers, puis exécutez la commande suivante pour créer une application PHP.</span><span class="sxs-lookup"><span data-stu-id="f1c9a-102">Open your command-line interface (CLI), navigate to a directory where you have rights to create files, and run the following command to create a new PHP app.</span></span>
 
-<span data-ttu-id="78f75-102">Laravel crée un nouveau répertoire appelé `graph-tutorial` et génère un échafaudage pour une application php.</span><span class="sxs-lookup"><span data-stu-id="78f75-102">Laravel creates a new directory called `graph-tutorial` and scaffolds a PHP app.</span></span> <span data-ttu-id="78f75-103">Accédez à ce nouveau répertoire et entrez la commande suivante pour démarrer un serveur Web local.</span><span class="sxs-lookup"><span data-stu-id="78f75-103">Navigate to this new directory and enter the following command to start a local web server.</span></span>
+    ```Shell
+    laravel new graph-tutorial
+    ```
 
-```Shell
-php artisan serve
-```
+1. <span data-ttu-id="f1c9a-103">Accédez au répertoire du **didacticiel Graph** et entrez la commande suivante pour démarrer un serveur Web local.</span><span class="sxs-lookup"><span data-stu-id="f1c9a-103">Navigate to the **graph-tutorial** directory and enter the following command to start a local web server.</span></span>
 
-<span data-ttu-id="78f75-104">Ouvrez votre navigateur et accédez à `http://localhost:8000`.</span><span class="sxs-lookup"><span data-stu-id="78f75-104">Open your browser and navigate to `http://localhost:8000`.</span></span> <span data-ttu-id="78f75-105">Si tout fonctionne, vous verrez une page Laravel par défaut.</span><span class="sxs-lookup"><span data-stu-id="78f75-105">If everything is working, you will see a default Laravel page.</span></span> <span data-ttu-id="78f75-106">Si vous ne voyez pas cette page, consultez les [docs Laravel](https://laravel.com/docs/6.0).</span><span class="sxs-lookup"><span data-stu-id="78f75-106">If you don't see that page, check the [Laravel docs](https://laravel.com/docs/6.0).</span></span>
+    ```Shell
+    php artisan serve
+    ```
 
-<span data-ttu-id="78f75-107">Avant de poursuivre, installez des bibliothèques supplémentaires que vous utiliserez plus tard :</span><span class="sxs-lookup"><span data-stu-id="78f75-107">Before moving on, install some additional libraries that you will use later:</span></span>
+1. <span data-ttu-id="f1c9a-104">Ouvrez votre navigateur et accédez à `http://localhost:8000`.</span><span class="sxs-lookup"><span data-stu-id="f1c9a-104">Open your browser and navigate to `http://localhost:8000`.</span></span> <span data-ttu-id="f1c9a-105">Si tout fonctionne, vous verrez une page Laravel par défaut.</span><span class="sxs-lookup"><span data-stu-id="f1c9a-105">If everything is working, you will see a default Laravel page.</span></span> <span data-ttu-id="f1c9a-106">Si vous ne voyez pas cette page, consultez les [docs Laravel](https://laravel.com/docs/7.x).</span><span class="sxs-lookup"><span data-stu-id="f1c9a-106">If you don't see that page, check the [Laravel docs](https://laravel.com/docs/7.x).</span></span>
 
-- <span data-ttu-id="78f75-108">[oauth2-client pour le](https://github.com/thephpleague/oauth2-client) traitement des flux de connexion et de jetons OAuth.</span><span class="sxs-lookup"><span data-stu-id="78f75-108">[oauth2-client](https://github.com/thephpleague/oauth2-client) for handling sign-in and OAuth token flows.</span></span>
-- <span data-ttu-id="78f75-109">[Microsoft-Graph](https://github.com/microsoftgraph/msgraph-sdk-php) pour effectuer des appels à Microsoft Graph.</span><span class="sxs-lookup"><span data-stu-id="78f75-109">[microsoft-graph](https://github.com/microsoftgraph/msgraph-sdk-php) for making calls to Microsoft Graph.</span></span>
+## <a name="install-packages"></a><span data-ttu-id="f1c9a-107">Installer des packages</span><span class="sxs-lookup"><span data-stu-id="f1c9a-107">Install packages</span></span>
 
-<span data-ttu-id="78f75-110">Exécutez la commande suivante dans votre interface CLI.</span><span class="sxs-lookup"><span data-stu-id="78f75-110">Run the following command in your CLI.</span></span>
+<span data-ttu-id="f1c9a-108">Avant de poursuivre, installez des packages supplémentaires que vous utiliserez plus tard :</span><span class="sxs-lookup"><span data-stu-id="f1c9a-108">Before moving on, install some additional packages that you will use later:</span></span>
 
-```Shell
-composer require league/oauth2-client:dev-master microsoft/microsoft-graph
-```
+- <span data-ttu-id="f1c9a-109">[oauth2-client pour le](https://github.com/thephpleague/oauth2-client) traitement des flux de connexion et de jetons OAuth.</span><span class="sxs-lookup"><span data-stu-id="f1c9a-109">[oauth2-client](https://github.com/thephpleague/oauth2-client) for handling sign-in and OAuth token flows.</span></span>
+- <span data-ttu-id="f1c9a-110">[Microsoft-Graph](https://github.com/microsoftgraph/msgraph-sdk-php) pour effectuer des appels à Microsoft Graph.</span><span class="sxs-lookup"><span data-stu-id="f1c9a-110">[microsoft-graph](https://github.com/microsoftgraph/msgraph-sdk-php) for making calls to Microsoft Graph.</span></span>
 
-## <a name="design-the-app"></a><span data-ttu-id="78f75-111">Concevoir l’application</span><span class="sxs-lookup"><span data-stu-id="78f75-111">Design the app</span></span>
+1. <span data-ttu-id="f1c9a-111">Exécutez la commande suivante dans votre interface CLI.</span><span class="sxs-lookup"><span data-stu-id="f1c9a-111">Run the following command in your CLI.</span></span>
 
-<span data-ttu-id="78f75-112">Commencez par créer la disposition globale de l’application.</span><span class="sxs-lookup"><span data-stu-id="78f75-112">Start by creating the global layout for the app.</span></span> <span data-ttu-id="78f75-113">Créez un fichier dans le `./resources/views` répertoire nommé `layout.blade.php` et ajoutez le code suivant.</span><span class="sxs-lookup"><span data-stu-id="78f75-113">Create a new file in the  `./resources/views` directory named `layout.blade.php` and add the following code.</span></span>
+    ```Shell
+    composer require league/oauth2-client microsoft/microsoft-graph
+    ```
 
-```php
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>PHP Graph Tutorial</title>
+## <a name="design-the-app"></a><span data-ttu-id="f1c9a-112">Concevoir l’application</span><span class="sxs-lookup"><span data-stu-id="f1c9a-112">Design the app</span></span>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-        integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
-        integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
-        integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-  </head>
+1. <span data-ttu-id="f1c9a-113">Créez un fichier dans le répertoire **./Resources/views** nommé `layout.blade.php` et ajoutez le code suivant.</span><span class="sxs-lookup"><span data-stu-id="f1c9a-113">Create a new file in the **./resources/views** directory named `layout.blade.php` and add the following code.</span></span>
 
-  <body>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <div class="container">
-        <a href="/" class="navbar-brand">PHP Graph Tutorial</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a href="/" class="nav-link {{$_SERVER['REQUEST_URI'] == '/' ? ' active' : ''}}">Home</a>
-            </li>
-            @if(isset($userName))
-              <li class="nav-item" data-turbolinks="false">
-                <a href="/calendar" class="nav-link{{$_SERVER['REQUEST_URI'] == '/calendar' ? ' active' : ''}}">Calendar</a>
-              </li>
-            @endif
-          </ul>
-          <ul class="navbar-nav justify-content-end">
-            <li class="nav-item">
-              <a class="nav-link" href="https://developer.microsoft.com/graph/docs/concepts/overview" target="_blank">
-                <i class="fas fa-external-link-alt mr-1"></i>Docs
-              </a>
-            </li>
-            @if(isset($userName))
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                  aria-haspopup="true" aria-expanded="false">
-                  @if(isset($user_avatar))
-                    <img src="{{ $user_avatar }}" class="rounded-circle align-self-center mr-2" style="width: 32px;">
-                  @else
-                    <i class="far fa-user-circle fa-lg rounded-circle align-self-center mr-2" style="width: 32px;"></i>
-                  @endif
-                </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                  <h5 class="dropdown-item-text mb-0">{{ $userName }}</h5>
-                  <p class="dropdown-item-text text-muted mb-0">{{ $userEmail }}</p>
-                  <div class="dropdown-divider"></div>
-                  <a href="/signout" class="dropdown-item">Sign Out</a>
-                </div>
-              </li>
-            @else
-              <li class="nav-item">
-                <a href="/signin" class="nav-link">Sign In</a>
-              </li>
-            @endif
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <main role="main" class="container">
-      @if(session('error'))
-        <div class="alert alert-danger" role="alert">
-          <p class="mb-3">{{ session('error') }}</p>
-          @if(session('errorDetail'))
-            <pre class="alert-pre border bg-light p-2"><code>{{ session('errorDetail') }}</code></pre>
-          @endif
-        </div>
-      @endif
+    :::code language="php" source="../demo/graph-tutorial/resources/views/layout.blade.php" id="LayoutSnippet":::
 
-      @yield('content')
-    </main>
-  </body>
-</html>
-```
+    <span data-ttu-id="f1c9a-114">Ce code ajoute [Bootstrap](http://getbootstrap.com/) pour la mise en forme simple et [Font Awesome](https://fontawesome.com/) pour certaines icônes simples.</span><span class="sxs-lookup"><span data-stu-id="f1c9a-114">This code adds [Bootstrap](http://getbootstrap.com/) for simple styling, and [Font Awesome](https://fontawesome.com/) for some simple icons.</span></span> <span data-ttu-id="f1c9a-115">Il définit également une disposition globale avec une barre de navigation.</span><span class="sxs-lookup"><span data-stu-id="f1c9a-115">It also defines a global layout with a nav bar.</span></span>
 
-<span data-ttu-id="78f75-114">Ce code ajoute [bootstrap](http://getbootstrap.com/) pour les styles simples et [font Isard](https://fontawesome.com/) pour certaines icônes simples.</span><span class="sxs-lookup"><span data-stu-id="78f75-114">This code adds [Bootstrap](http://getbootstrap.com/) for simple styling, and [Font Awesome](https://fontawesome.com/) for some simple icons.</span></span> <span data-ttu-id="78f75-115">Il définit également une disposition globale avec une barre de navigation.</span><span class="sxs-lookup"><span data-stu-id="78f75-115">It also defines a global layout with a nav bar.</span></span>
+1. <span data-ttu-id="f1c9a-116">Créez un `./public` répertoire dans le répertoire nommé `css`, puis créez un fichier dans le `./public/css` répertoire nommé. `app.css`</span><span class="sxs-lookup"><span data-stu-id="f1c9a-116">Create a new directory in the `./public` directory named `css`, then create a new file in the `./public/css` directory named `app.css`.</span></span> <span data-ttu-id="f1c9a-117">Ajoutez le code suivant.</span><span class="sxs-lookup"><span data-stu-id="f1c9a-117">Add the following code.</span></span>
 
-<span data-ttu-id="78f75-116">Créez un `./public` répertoire dans le répertoire nommé `css`, puis créez un fichier dans le `./public/css` répertoire nommé. `app.css`</span><span class="sxs-lookup"><span data-stu-id="78f75-116">Create a new directory in the `./public` directory named `css`, then create a new file in the `./public/css` directory named `app.css`.</span></span> <span data-ttu-id="78f75-117">Ajoutez le code suivant.</span><span class="sxs-lookup"><span data-stu-id="78f75-117">Add the following code.</span></span>
+    :::code language="css" source="../demo/graph-tutorial/public/css/app.css":::
 
-```css
-body {
-  padding-top: 4.5rem;
-}
+1. <span data-ttu-id="f1c9a-118">Ouvrez le `./resources/views/welcome.blade.php` fichier et remplacez son contenu par ce qui suit.</span><span class="sxs-lookup"><span data-stu-id="f1c9a-118">Open the `./resources/views/welcome.blade.php` file and replace its contents with the following.</span></span>
 
-.alert-pre {
-  word-wrap: break-word;
-  word-break: break-all;
-  white-space: pre-wrap;
-}
-```
+    :::code language="php" source="../demo/graph-tutorial/resources/views/welcome.blade.php" id="WelcomeSnippet":::
 
-<span data-ttu-id="78f75-118">À présent, mettez à jour la page par défaut.</span><span class="sxs-lookup"><span data-stu-id="78f75-118">Now update the default page.</span></span> <span data-ttu-id="78f75-119">Ouvrez le `./resources/views/welcome.blade.php` fichier et remplacez son contenu par ce qui suit.</span><span class="sxs-lookup"><span data-stu-id="78f75-119">Open the `./resources/views/welcome.blade.php` file and replace its contents with the following.</span></span>
+1. <span data-ttu-id="f1c9a-119">Mettez à jour `Controller` la classe de base dans **./app/http/Controllers/Controller.php** en ajoutant la fonction suivante à la classe.</span><span class="sxs-lookup"><span data-stu-id="f1c9a-119">Update the base `Controller` class in **./app/Http/Controllers/Controller.php** by adding the following function to the class.</span></span>
 
-```php
-@extends('layout')
+    :::code language="php" source="../demo/graph-tutorial/app/Http/Controllers/Controller.php" id="LoadViewDataSnippet":::
 
-@section('content')
-<div class="jumbotron">
-  <h1>PHP Graph Tutorial</h1>
-  <p class="lead">This sample app shows how to use the Microsoft Graph API to access Outlook and OneDrive data from PHP</p>
-  @if(isset($userName))
-    <h4>Welcome {{ $userName }}!</h4>
-    <p>Use the navigation bar at the top of the page to get started.</p>
-  @else
-    <a href="/signin" class="btn btn-primary btn-large">Click here to sign in</a>
-  @endif
-</div>
-@endsection
-```
+1. <span data-ttu-id="f1c9a-120">Créez un fichier dans le `./app/Http/Controllers` répertoire nommé `HomeController.php` et ajoutez le code suivant.</span><span class="sxs-lookup"><span data-stu-id="f1c9a-120">Create a new file in the `./app/Http/Controllers` directory named `HomeController.php` and add the following code.</span></span>
 
-<span data-ttu-id="78f75-120">Mettez à jour `Controller` la classe `./app/Http/Controllers/Controller.php` de base dans en ajoutant la fonction suivante à la classe.</span><span class="sxs-lookup"><span data-stu-id="78f75-120">Update the base `Controller` class in `./app/Http/Controllers/Controller.php` by adding the following function to the class.</span></span>
+    :::code language="php" source="../demo/graph-tutorial/app/Http/Controllers/HomeController.php":::
 
-```php
-public function loadViewData()
-{
-  $viewData = [];
+1. <span data-ttu-id="f1c9a-121">Mettez à jour l' `./routes/web.php` itinéraire dans pour utiliser le nouveau contrôleur.</span><span class="sxs-lookup"><span data-stu-id="f1c9a-121">Update the route in `./routes/web.php` to use the new controller.</span></span> <span data-ttu-id="f1c9a-122">Remplacez tout le contenu de ce fichier par ce qui suit.</span><span class="sxs-lookup"><span data-stu-id="f1c9a-122">Replace the entire contents of this file with the following.</span></span>
 
-  // Check for flash errors
-  if (session('error')) {
-    $viewData['error'] = session('error');
-    $viewData['errorDetail'] = session('errorDetail');
-  }
+    ```php
+    <?php
 
-  // Check for logged on user
-  if (session('userName'))
-  {
-    $viewData['userName'] = session('userName');
-    $viewData['userEmail'] = session('userEmail');
-  }
+    use Illuminate\Support\Facades\Route;
 
-  return $viewData;
-}
-```
+    Route::get('/', 'HomeController@welcome');
+    ```
 
-<span data-ttu-id="78f75-121">Ensuite, ajoutez un contrôleur pour la page d’accueil.</span><span class="sxs-lookup"><span data-stu-id="78f75-121">Next, add a controller for the home page.</span></span> <span data-ttu-id="78f75-122">Créez un fichier dans le `./app/Http/Controllers` répertoire nommé `HomeController.php` et ajoutez le code suivant.</span><span class="sxs-lookup"><span data-stu-id="78f75-122">Create a new file in the `./app/Http/Controllers` directory named `HomeController.php` and add the following code.</span></span>
+1. <span data-ttu-id="f1c9a-123">Enregistrez toutes vos modifications et redémarrez le serveur.</span><span class="sxs-lookup"><span data-stu-id="f1c9a-123">Save all of your changes and restart the server.</span></span> <span data-ttu-id="f1c9a-124">À présent, l’application doit être très différente.</span><span class="sxs-lookup"><span data-stu-id="f1c9a-124">Now, the app should look very different.</span></span>
 
-```php
-<?php
-
-namespace App\Http\Controllers;
-
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-
-class HomeController extends Controller
-{
-  public function welcome()
-  {
-    $viewData = $this->loadViewData();
-
-    return view('welcome', $viewData);
-  }
-}
-```
-
-<span data-ttu-id="78f75-123">Enfin, mettez à jour l' `./routes/web.php` itinéraire dans pour utiliser le nouveau contrôleur.</span><span class="sxs-lookup"><span data-stu-id="78f75-123">Finally, update the route in `./routes/web.php` to use the new controller.</span></span> <span data-ttu-id="78f75-124">Remplacez tout le contenu de ce fichier par ce qui suit.</span><span class="sxs-lookup"><span data-stu-id="78f75-124">Replace the entire contents of this file with the following.</span></span>
-
-```php
-<?php
-
-Route::get('/', 'HomeController@welcome');
-```
-
-<span data-ttu-id="78f75-125">Enregistrez toutes vos modifications et redémarrez le serveur.</span><span class="sxs-lookup"><span data-stu-id="78f75-125">Save all of your changes and restart the server.</span></span> <span data-ttu-id="78f75-126">À présent, l’application doit être très différente.</span><span class="sxs-lookup"><span data-stu-id="78f75-126">Now, the app should look very different.</span></span>
-
-![Capture d’écran de la page d’accueil repensée](./images/create-app-01.png)
+    ![Capture d’écran de la page d’accueil repensée](./images/create-app-01.png)
