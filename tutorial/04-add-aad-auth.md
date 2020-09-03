@@ -2,11 +2,11 @@
 
 Dans cet exercice, vous allez étendre l’application de l’exercice précédent pour prendre en charge l’authentification avec Azure AD. Cela est nécessaire pour obtenir le jeton d’accès OAuth nécessaire pour appeler Microsoft Graph. Dans cette étape, vous allez intégrer la bibliothèque [oauth2-cliente](https://github.com/thephpleague/oauth2-client) dans l’application.
 
-1. Ouvrez le `.env` fichier à la racine de votre application php et ajoutez le code suivant à la fin du fichier.
+1. Ouvrez le fichier **. env** à la racine de votre application php et ajoutez le code suivant à la fin du fichier.
 
     :::code language="ini" source="../demo/graph-tutorial/.env.example" id="OAuthSettingsSnippet":::
 
-1. Remplacez `YOUR_APP_ID_HERE` par l’ID de l’application dans le portail d’inscription de `YOUR_APP_PASSWORD_HERE` l’application et remplacez par le mot de passe que vous avez généré.
+1. Remplacez `YOUR_APP_ID_HERE` par l’ID de l’application dans le portail d’inscription de l’application et remplacez `YOUR_APP_PASSWORD_HERE` par le mot de passe que vous avez généré.
 
     > [!IMPORTANT]
     > Si vous utilisez le contrôle de code source tel que git, il est maintenant recommandé d’exclure le `.env` fichier du contrôle de code source afin d’éviter une fuite accidentelle de votre ID d’application et de votre mot de passe.
@@ -105,11 +105,11 @@ Dans cet exercice, vous allez étendre l’application de l’exercice précéde
     }
     ```
 
-    Cela définit un contrôleur avec deux actions : `signin` et `callback`.
+    Cela définit un contrôleur avec deux actions : `signin` et `callback` .
 
     L' `signin` action génère l’URL de connexion Azure ad, enregistre la `state` valeur générée par le client OAuth, puis redirige le navigateur vers la page de connexion Azure ad.
 
-    L' `callback` action est l’endroit où Azure redirige une fois la connexion terminée. Cette action permet de s' `state` assurer que la valeur correspond à la valeur enregistrée, puis aux utilisateurs le code d’autorisation envoyé par Azure pour demander un jeton d’accès. Il redirige ensuite vers la page d’accueil avec le jeton d’accès dans la valeur d’erreur temporaire. Vous l’utiliserez pour vérifier que la connexion fonctionne avant de poursuivre.
+    L' `callback` action est l’endroit où Azure redirige une fois la connexion terminée. Cette action permet de s’assurer que la `state` valeur correspond à la valeur enregistrée, puis aux utilisateurs le code d’autorisation envoyé par Azure pour demander un jeton d’accès. Il redirige ensuite vers la page d’accueil avec le jeton d’accès dans la valeur d’erreur temporaire. Vous l’utiliserez pour vérifier que la connexion fonctionne avant de poursuivre.
 
 1. Ajoutez les itinéraires à **./routes/Web.php**.
 
@@ -118,13 +118,22 @@ Dans cet exercice, vous allez étendre l’application de l’exercice précéde
     Route::get('/callback', 'AuthController@callback');
     ```
 
-1. Démarrez le serveur et accédez à `https://localhost:8000`. Cliquez sur le bouton de connexion. vous serez redirigé vers `https://login.microsoftonline.com`. Connectez-vous avec votre compte Microsoft et acceptez les autorisations demandées. Le navigateur vous redirige vers l’application, affichant le jeton.
+1. Démarrez le serveur et accédez à `https://localhost:8000` . Cliquez sur le bouton de connexion. vous serez redirigé vers `https://login.microsoftonline.com`. Connectez-vous avec votre compte Microsoft.
+
+1. Examinez l’invite de consentement. La liste des autorisations correspond à la liste des étendues d’autorisations configurées dans **. env**.
+
+    - **Conserver l’accès aux données auxquelles vous avez accordé l’accès à :** ( `offline_access` ) cette autorisation est demandée par MSAL afin de récupérer les jetons d’actualisation.
+    - **Connectez-vous et lisez votre profil :** ( `User.Read` ) cette autorisation permet à l’application d’obtenir le profil de l’utilisateur connecté et sa photo de profil.
+    - **Lire les paramètres de votre boîte aux lettres :** ( `MailboxSettings.Read` ) cette autorisation permet à l’application de lire les paramètres de boîte aux lettres de l’utilisateur, notamment le fuseau horaire et le format de l’heure.
+    - **Avoir un accès total à vos calendriers :** ( `Calendars.ReadWrite` ) cette autorisation permet à l’application de lire des événements sur le calendrier de l’utilisateur, d’ajouter de nouveaux événements et de modifier des événements existants.
+
+1. Consentement des autorisations demandées. Le navigateur vous redirige vers l’application, affichant le jeton.
 
 ### <a name="get-user-details"></a>Obtenir les détails de l’utilisateur
 
-Dans cette section, vous allez mettre `callback` à jour la méthode pour obtenir le profil de l’utilisateur à partir de Microsoft Graph.
+Dans cette section, vous allez mettre à jour la `callback` méthode pour obtenir le profil de l’utilisateur à partir de Microsoft Graph.
 
-1. Ajoutez les instructions `use` suivantes en haut de **/app/http/Controllers/AuthController.php**, sous la `namespace App\Http\Controllers;` ligne.
+1. Ajoutez les `use` instructions suivantes en haut de **/app/http/Controllers/AuthController.php**, sous la `namespace App\Http\Controllers;` ligne.
 
     ```php
     use Microsoft\Graph\Graph;
@@ -143,7 +152,7 @@ Dans cette section, vous allez mettre `callback` à jour la méthode pour obteni
       $graph = new Graph();
       $graph->setAccessToken($accessToken->getToken());
 
-      $user = $graph->createRequest('GET', '/me')
+      $user = $graph->createRequest('GET', '/me?$select=displayName,mail,mailboxSettings,userPrincipalName')
         ->setReturnType(Model\User::class)
         ->execute();
 
@@ -160,7 +169,7 @@ Le nouveau code crée un `Graph` objet, lui attribue le jeton d’accès, puis l
 
 Maintenant que vous pouvez obtenir des jetons, nous vous conseillons d’implémenter un moyen de les stocker dans l’application. Étant donné qu’il s’agit d’un exemple d’application, pour des raisons de simplicité, vous les stockerez dans la session. Une application réelle utilise une solution de stockage sécurisé plus fiable, comme une base de données.
 
-1. Créez un répertoire dans le répertoire **./app** nommé `TokenStore`, puis créez un fichier dans ce répertoire nommé `TokenCache.php`et ajoutez le code suivant.
+1. Créez un répertoire dans le répertoire **./app** nommé `TokenStore` , puis créez un fichier dans ce répertoire nommé `TokenCache.php` et ajoutez le code suivant.
 
     ```php
     <?php
@@ -175,6 +184,7 @@ Maintenant que vous pouvez obtenir des jetons, nous vous conseillons d’implém
           'tokenExpires' => $accessToken->getExpires(),
           'userName' => $user->getDisplayName(),
           'userEmail' => null !== $user->getMail() ? $user->getMail() : $user->getUserPrincipalName()
+          'userTimeZone' => $user->getMailboxSettings()->getTimeZone()
         ]);
       }
 
@@ -184,6 +194,7 @@ Maintenant que vous pouvez obtenir des jetons, nous vous conseillons d’implém
         session()->forget('tokenExpires');
         session()->forget('userName');
         session()->forget('userEmail');
+        session()->forget('userTimeZone');
       }
 
       public function getAccessToken() {
@@ -199,13 +210,13 @@ Maintenant que vous pouvez obtenir des jetons, nous vous conseillons d’implém
     }
     ```
 
-1. Ajoutez l’instruction `use` suivante en haut de **./app/http/Controllers/AuthController.php**, sous la `namespace App\Http\Controllers;` ligne.
+1. Ajoutez l' `use` instruction suivante en haut de **./app/http/Controllers/AuthController.php**, sous la `namespace App\Http\Controllers;` ligne.
 
     ```php
     use App\TokenStore\TokenCache;
     ```
 
-1. Remplacez le `try` bloc dans la fonction `callback` existante par ce qui suit.
+1. Remplacez le `try` bloc dans la `callback` fonction existante par ce qui suit.
 
     :::code language="php" source="../demo/graph-tutorial/app/Http/Controllers/AuthController.php" id="StoreTokensSnippet":::
 
@@ -233,7 +244,7 @@ Avant de tester cette nouvelle fonctionnalité, ajoutez une méthode pour vous d
 
 ## <a name="refreshing-tokens"></a>Actualisation des jetons
 
-À ce stade, votre application a un jeton d’accès, qui est envoyé `Authorization` dans l’en-tête des appels d’API. Il s’agit du jeton qui permet à l’application d’accéder à Microsoft Graph pour le compte de l’utilisateur.
+À ce stade, votre application a un jeton d’accès, qui est envoyé dans l' `Authorization` en-tête des appels d’API. Il s’agit du jeton qui permet à l’application d’accéder à Microsoft Graph pour le compte de l’utilisateur.
 
 Cependant, ce jeton est de courte durée. Le jeton expire une heure après son émission. C’est là que le jeton d’actualisation devient utile. Le jeton d’actualisation permet à l’application de demander un nouveau jeton d’accès sans obliger l’utilisateur à se reconnecter. Mettez à jour le code de gestion des jetons pour implémenter l’actualisation des jetons.
 

@@ -23,6 +23,12 @@ Avant de poursuivre, installez des packages supplémentaires que vous utiliserez
 - [oauth2-client pour le](https://github.com/thephpleague/oauth2-client) traitement des flux de connexion et de jetons OAuth.
 - [Microsoft-Graph](https://github.com/microsoftgraph/msgraph-sdk-php) pour effectuer des appels à Microsoft Graph.
 
+1. Exécutez la commande suivante pour supprimer la version existante de `guzzlehttp/guzzle` . La version installée par Laravel est en conflit avec la version requise par le kit de développement logiciel (SDK) Microsoft Graph PHP.
+
+    ```Shell
+    composer remove guzzlehttp/guzzle
+    ```
+
 1. Exécutez la commande suivante dans votre interface CLI.
 
     ```Shell
@@ -37,7 +43,7 @@ Avant de poursuivre, installez des packages supplémentaires que vous utiliserez
 
     Ce code ajoute [Bootstrap](http://getbootstrap.com/) pour la mise en forme simple et [Font Awesome](https://fontawesome.com/) pour certaines icônes simples. Il définit également une disposition globale avec une barre de navigation.
 
-1. Créez un `./public` répertoire dans le répertoire nommé `css`, puis créez un fichier dans le `./public/css` répertoire nommé. `app.css` Ajoutez le code suivant.
+1. Créez un répertoire dans le `./public` répertoire nommé `css` , puis créez un fichier dans le `./public/css` répertoire nommé `app.css` . Ajoutez le code suivant.
 
     :::code language="css" source="../demo/graph-tutorial/public/css/app.css":::
 
@@ -45,7 +51,7 @@ Avant de poursuivre, installez des packages supplémentaires que vous utiliserez
 
     :::code language="php" source="../demo/graph-tutorial/resources/views/welcome.blade.php" id="WelcomeSnippet":::
 
-1. Mettez à jour `Controller` la classe de base dans **./app/http/Controllers/Controller.php** en ajoutant la fonction suivante à la classe.
+1. Mettez à jour la `Controller` classe de base dans **./app/http/Controllers/Controller.php** en ajoutant la fonction suivante à la classe.
 
     :::code language="php" source="../demo/graph-tutorial/app/Http/Controllers/Controller.php" id="LoadViewDataSnippet":::
 
@@ -53,7 +59,7 @@ Avant de poursuivre, installez des packages supplémentaires que vous utiliserez
 
     :::code language="php" source="../demo/graph-tutorial/app/Http/Controllers/HomeController.php":::
 
-1. Mettez à jour l' `./routes/web.php` itinéraire dans pour utiliser le nouveau contrôleur. Remplacez tout le contenu de ce fichier par ce qui suit.
+1. Mettez à jour l’itinéraire dans `./routes/web.php` pour utiliser le nouveau contrôleur. Remplacez tout le contenu de ce fichier par ce qui suit.
 
     ```php
     <?php

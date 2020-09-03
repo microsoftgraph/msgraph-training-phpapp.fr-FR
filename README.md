@@ -14,7 +14,11 @@ Si vous souhaitez simplement obtenir l’exemple complet généré en suivant ce
 
 - [Projet terminé](demo)
 
-## <a name="disclaimer"></a>Clause d’exclusion
+## <a name="more-samples"></a>Autres exemples
+
+Si vous recherchez d’autres exemples graphiques au-delà des scénarios de calendrier, ou si vous souhaitez contribuer à d’autres exemples de ce projet, consultez l’exemple de [branche](https://github.com/microsoftgraph/msgraph-training-phpapp/tree/samples).
+
+## <a name="disclaimer"></a>Clause d’exclusion de responsabilité
 
 **CE CODE est fourni *en* l’État sans garantie, expresse ou implicite, y compris toute garantie implicite d’adéquation à un usage particulier, de qualité MARCHANDe ou de non-contrefaçon.**
 
