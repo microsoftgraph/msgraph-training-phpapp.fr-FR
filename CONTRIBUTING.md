@@ -1,0 +1,43 @@
+# <a name="contributing-to-microsoft-graph-training-repositories"></a><span data-ttu-id="f48e0-101">Contribution aux référentiels de formation Microsoft Graph</span><span class="sxs-lookup"><span data-stu-id="f48e0-101">Contributing to Microsoft Graph training repositories</span></span>
+
+<span data-ttu-id="f48e0-102">Merci d’avoir contribué à ce projet !</span><span class="sxs-lookup"><span data-stu-id="f48e0-102">Thank you for contributing to this project!</span></span> <span data-ttu-id="f48e0-103">Avant d’envoyer votre requête de tirage, veillez à prendre en compte les points suivants.</span><span class="sxs-lookup"><span data-stu-id="f48e0-103">Before submitting your pull request, be sure to consider the following.</span></span>
+
+## <a name="overview"></a><span data-ttu-id="f48e0-104">Vue d’ensemble</span><span class="sxs-lookup"><span data-stu-id="f48e0-104">Overview</span></span>
+
+<span data-ttu-id="f48e0-105">Le code de ce référentiel répond à trois objectifs :</span><span class="sxs-lookup"><span data-stu-id="f48e0-105">The code in this repository serves three purposes:</span></span>
+
+- <span data-ttu-id="f48e0-106">Les fichiers de démarque dans le dossier [Tutorial](/tutorial) sont publiés sous la forme d’un didacticiel sur la page des [didacticiels Microsoft Graph](https://docs.microsoft.com/graph/tutorials) .</span><span class="sxs-lookup"><span data-stu-id="f48e0-106">The Markdown files in the [tutorial](/tutorial) folder are published as a tutorial on the [Microsoft Graph tutorials](https://docs.microsoft.com/graph/tutorials) page.</span></span>
+- <span data-ttu-id="f48e0-107">L’exemple de projet dans le dossier [Demo](/demo) est la source pour un [démarrage rapide de Microsoft Graph](https://developer.microsoft.com/graph/quick-start).**\***</span><span class="sxs-lookup"><span data-stu-id="f48e0-107">The sample project in the [demo](/demo) folder is the source for a [Microsoft Graph quick start](https://developer.microsoft.com/graph/quick-start).**\***</span></span>
+- <span data-ttu-id="f48e0-108">L’exemple de projet dans le dossier Demo est également téléchargeable directement auprès de GitHub et doit être exécuté en l’après d’une configuration simple.</span><span class="sxs-lookup"><span data-stu-id="f48e0-108">The sample project in the demo folder is also downloadable directly from GitHub and should run as-is after some simple configuration.</span></span>
+
+> <span data-ttu-id="f48e0-109">**\*** Tous les référentiels d’apprentissage ne sont pas disponibles en tant que Démarrages rapides (encore).</span><span class="sxs-lookup"><span data-stu-id="f48e0-109">**\*** Not all training repositories are available as quick starts (yet).</span></span>
+
+<span data-ttu-id="f48e0-110">Il est important de garder à l’esprit que, étant donné que les modifications apportées à un emplacement *peuvent* nécessiter des modifications apportées dans un autre, pour maintenir la synchronisation. Whereever possible, les fichiers de démarque font référence directement aux fichiers de code source (à l’aide d’une `:::code` syntaxe personnalisée), de sorte que la mise à jour du code de la source met automatiquement à jour le code dans la démarque.</span><span class="sxs-lookup"><span data-stu-id="f48e0-110">This is important to keep in mind, because changes in one place *may* require changes in another, to keep things in sync. Whereever possible, the Markdown files refer to the source code files directly (using a custom `:::code` syntax), so that updating code in source will automatically update the code in Markdown.</span></span>
+
+## <a name="updating-code"></a><span data-ttu-id="f48e0-111">Mise à jour du code</span><span class="sxs-lookup"><span data-stu-id="f48e0-111">Updating code</span></span>
+
+<span data-ttu-id="f48e0-112">La `:::code` syntaxe utilisée dans la démarque dépend de commentaires spécifiques dans le fichier de code source.</span><span class="sxs-lookup"><span data-stu-id="f48e0-112">The `:::code` syntax used in Markdown depends on specific comments in the source code file.</span></span> <span data-ttu-id="f48e0-113">Ces commentaires ressemblent à ce qui suit :</span><span class="sxs-lookup"><span data-stu-id="f48e0-113">These comments look like the following:</span></span>
+
+```csharp
+// <MySnippet>
+Console.WriteLine("Hello World!");
+// </MySnippet>
+```
+
+<span data-ttu-id="f48e0-114">Si vous mettez à jour le code entre ces commentaires « marque », les fichiers de démarque reçoivent automatiquement ces modifications lorsqu’elles sont publiées sur le site de documentation Microsoft Graph.</span><span class="sxs-lookup"><span data-stu-id="f48e0-114">If you update code between these "marker" comments, the Markdown files will automatically get those changes when published to the Microsoft Graph documentation site.</span></span> <span data-ttu-id="f48e0-115">Si vous mettez à jour le code en dehors de ces commentaires, il est fort probable que vous devez mettre à jour la démarque correspondante.</span><span class="sxs-lookup"><span data-stu-id="f48e0-115">If you update code outside of those comments, it's very likely that you'll need to update the corresponding Markdown.</span></span>
+
+## <a name="adding-features"></a><span data-ttu-id="f48e0-116">Ajout de fonctionnalités</span><span class="sxs-lookup"><span data-stu-id="f48e0-116">Adding features</span></span>
+
+<span data-ttu-id="f48e0-117">Bien que l’enthousiasme soit apprécié, n’envoyez pas de demandes d’extraction pour ajouter de nouvelles fonctionnalités à l’exemple.</span><span class="sxs-lookup"><span data-stu-id="f48e0-117">While the enthusiasm is appreciated, please don't send pull requests to add new features to the sample.</span></span> <span data-ttu-id="f48e0-118">Étant donné que ce référentiel est principalement un didacticiel de création de votre première application, le jeu de fonctionnalités est limité, par conception.</span><span class="sxs-lookup"><span data-stu-id="f48e0-118">Because this repository is primarily a "build your first app" tutorial, the feature set is limited, by design.</span></span>
+
+## <a name="submitting-pull-requests"></a><span data-ttu-id="f48e0-119">Envoi de demandes de tirage</span><span class="sxs-lookup"><span data-stu-id="f48e0-119">Submitting pull requests</span></span>
+
+<span data-ttu-id="f48e0-120">Envoyez toutes les requêtes de tirage à la `master` succursale.</span><span class="sxs-lookup"><span data-stu-id="f48e0-120">Please submit all pull requests to the `master` branch.</span></span>
+
+## <a name="when-do-changes-get-published"></a><span data-ttu-id="f48e0-121">Quand les modifications sont-elles publiées ?</span><span class="sxs-lookup"><span data-stu-id="f48e0-121">When do changes get published?</span></span>
+
+<span data-ttu-id="f48e0-122">La publication de mises à jour sur le site de [didacticiels Microsoft Graph](https://docs.microsoft.com/graph/tutorials) n’est pas automatique.</span><span class="sxs-lookup"><span data-stu-id="f48e0-122">Publishing of updates to the [Microsoft Graph tutorials](https://docs.microsoft.com/graph/tutorials) site is not automatic.</span></span> <span data-ttu-id="f48e0-123">Les modifications doivent d’abord être promues vers la `live` succursale, puis une build doit être déclenchée par les administrateurs du site.</span><span class="sxs-lookup"><span data-stu-id="f48e0-123">Changes must first be promoted to the `live` branch, then a build must be triggered by the site admins.</span></span> <span data-ttu-id="f48e0-124">Cette opération est généralement réalisée en fonction des besoins.</span><span class="sxs-lookup"><span data-stu-id="f48e0-124">This is typically done on an "as-needed" basis.</span></span>
+
+## <a name="code-of-conduct"></a><span data-ttu-id="f48e0-125">Code de conduite</span><span class="sxs-lookup"><span data-stu-id="f48e0-125">Code of conduct</span></span>
+
+<span data-ttu-id="f48e0-p106">Ce projet a adopté le [code de conduite Microsoft Open Source](https://opensource.microsoft.com/codeofconduct/). Pour plus d’informations, reportez-vous à la [FAQ relative au code de conduite](https://opensource.microsoft.com/codeofconduct/faq/) ou contactez [opencode@microsoft.com](mailto:opencode@microsoft.com) pour toute question ou tout commentaire.</span><span class="sxs-lookup"><span data-stu-id="f48e0-p106">This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.</span></span>
