@@ -1,15 +1,19 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-Dans cet exercice, vous allez étendre l’application de l’exercice précédent pour prendre en charge l’authentification avec Azure AD. Cette étape est nécessaire pour obtenir le jeton d’accès OAuth nécessaire pour appeler Microsoft Graph. Dans cette étape, vous allez intégrer la [bibliothèque oauth2-client](https://github.com/thephpleague/oauth2-client) dans l’application.
+Dans cet exercice, vous allez étendre l’application de l’exercice précédent pour prendre en charge l’authentification avec Azure AD. Cette étape est nécessaire pour obtenir le jeton d’accès OAuth nécessaire pour appeler Microsoft Graph. Dans cette étape, vous allez intégrer la bibliothèque [oauth2-client](https://github.com/thephpleague/oauth2-client) dans l’application.
 
 1. Ouvrez **le fichier .env** à la racine de votre application PHP et ajoutez le code suivant à la fin du fichier.
 
-    :::code language="ini" source="../demo/graph-tutorial/example.env" range="48-54":::
+    :::code language="ini" source="../demo/graph-tutorial/example.env" range="51-57":::
 
-1. Remplacez-le par l’ID de l’application à partir du portail d’inscription des applications et par le `YOUR_APP_ID_HERE` mot de passe que vous avez `YOUR_APP_PASSWORD_HERE` généré.
+1. Remplacez-le par l’ID de l’application à partir du portail d’inscription des applications et par le `YOUR_APP_ID_HERE` mot de passe que vous avez `YOUR_APP_SECRET_HERE` généré.
 
     > [!IMPORTANT]
     > Si vous utilisez un contrôle source tel que Git, il est temps d’exclure le fichier du contrôle source afin d’éviter toute fuite accidentelle de votre ID d’application et de votre mot de `.env` passe.
+
+1. Créez un fichier dans **le dossier ./config** nommé `azure.php` et ajoutez le code suivant.
+
+    :::code language="php" source="../demo/graph-tutorial/config/azure.php":::
 
 ## <a name="implement-sign-in"></a>Implémentation de la connexion
 
@@ -29,13 +33,13 @@ Dans cet exercice, vous allez étendre l’application de l’exercice précéde
       {
         // Initialize the OAuth client
         $oauthClient = new \League\OAuth2\Client\Provider\GenericProvider([
-          'clientId'                => env('OAUTH_APP_ID'),
-          'clientSecret'            => env('OAUTH_APP_PASSWORD'),
-          'redirectUri'             => env('OAUTH_REDIRECT_URI'),
-          'urlAuthorize'            => env('OAUTH_AUTHORITY').env('OAUTH_AUTHORIZE_ENDPOINT'),
-          'urlAccessToken'          => env('OAUTH_AUTHORITY').env('OAUTH_TOKEN_ENDPOINT'),
+          'clientId'                => config('azure.appId'),
+          'clientSecret'            => config('azure.appSecret'),
+          'redirectUri'             => config('azure.redirectUri'),
+          'urlAuthorize'            => config('azure.authority').config('azure.authorizeEndpoint'),
+          'urlAccessToken'          => config('azure.authority').config('azure.tokenEndpoint'),
           'urlResourceOwnerDetails' => '',
-          'scopes'                  => env('OAUTH_SCOPES')
+          'scopes'                  => config('azure.scopes')
         ]);
 
         $authUrl = $oauthClient->getAuthorizationUrl();
@@ -71,13 +75,13 @@ Dans cet exercice, vous allez étendre l’application de l’exercice précéde
         if (isset($authCode)) {
           // Initialize the OAuth client
           $oauthClient = new \League\OAuth2\Client\Provider\GenericProvider([
-            'clientId'                => env('OAUTH_APP_ID'),
-            'clientSecret'            => env('OAUTH_APP_PASSWORD'),
-            'redirectUri'             => env('OAUTH_REDIRECT_URI'),
-            'urlAuthorize'            => env('OAUTH_AUTHORITY').env('OAUTH_AUTHORIZE_ENDPOINT'),
-            'urlAccessToken'          => env('OAUTH_AUTHORITY').env('OAUTH_TOKEN_ENDPOINT'),
+            'clientId'                => config('azure.appId'),
+            'clientSecret'            => config('azure.appSecret'),
+            'redirectUri'             => config('azure.redirectUri'),
+            'urlAuthorize'            => config('azure.authority').config('azure.authorizeEndpoint'),
+            'urlAccessToken'          => config('azure.authority').config('azure.tokenEndpoint'),
             'urlResourceOwnerDetails' => '',
-            'scopes'                  => env('OAUTH_SCOPES')
+            'scopes'                  => config('azure.scopes')
           ]);
 
           try {
@@ -131,7 +135,7 @@ Dans cet exercice, vous allez étendre l’application de l’exercice précéde
 
 ### <a name="get-user-details"></a>Obtenir les détails de l’utilisateur
 
-Dans cette section, vous allez mettre à jour la méthode pour obtenir `callback` le profil de l’utilisateur à partir de Microsoft Graph.
+Dans cette section, vous allez mettre à jour la méthode pour obtenir le profil de `callback` l’utilisateur à partir de Microsoft Graph.
 
 1. Ajoutez les instructions suivantes en haut de `use` **/app/Http/Controllers/AuthController.php**, sous la `namespace App\Http\Controllers;` ligne.
 
@@ -234,7 +238,7 @@ Avant de tester cette nouvelle fonctionnalité, ajoutez un moyen de vous en sort
     Route::get('/signout', 'AuthController@signout');
     ```
 
-1. Redémarrez le serveur et traversez le processus de sign-in. Vous devez revenir sur la page d’accueil, mais l’interface utilisateur doit changer pour indiquer que vous êtes en cours de signature.
+1. Redémarrez le serveur et traversez le processus de sign-in. Vous devez revenir sur la page d’accueil, mais l’interface utilisateur doit changer pour indiquer que vous êtes bien inscrit.
 
     ![Capture d’écran de la page d’accueil après la connexion](./images/add-aad-auth-01.png)
 

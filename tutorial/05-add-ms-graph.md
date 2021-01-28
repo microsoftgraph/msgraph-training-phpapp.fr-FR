@@ -39,6 +39,8 @@ Dans cet exercice, vous allez incorporer Microsoft Graph dans l’application. P
         $startOfWeek = new \DateTimeImmutable('sunday -1 week', $timezone);
         $endOfWeek = new \DateTimeImmutable('sunday', $timezone);
 
+        $viewData['dateRange'] = $startOfWeek->format('M j, Y').' - '.$endOfWeek->format('M j, Y');
+
         $queryParams = array(
           'startDateTime' => $startOfWeek->format(\DateTimeInterface::ISO8601),
           'endDateTime' => $endOfWeek->format(\DateTimeInterface::ISO8601),
